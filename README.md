@@ -1,1 +1,1 @@
-# croissant-node
+# croissant-node 🥐
