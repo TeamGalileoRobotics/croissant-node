@@ -15,3 +15,6 @@ def connect(ssid = config.NETWORK_SSID, password = config.NETWORK_PASSWORD):
 def start():
     with uwebsockets.client.connect('ws://' + config.SERVER) as websocket:
         websocket.send("🥐")
+
+connect()
+start()
