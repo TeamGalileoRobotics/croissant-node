@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # secret config file
-config.py
+src/config.py
