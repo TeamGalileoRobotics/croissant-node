@@ -22,8 +22,8 @@ def connect(ssid=config.NETWORK_SSID, password=config.NETWORK_PASSWORD):
 
 def start():
     spi = busio.SPI(board.SCK, board.MOSI, board.MISO)
-    cs = digitalio.DigitalInOut(board.D5)  # Set to appropriate CS pin!
-    int1 = digitalio.DigitalInOut(board.D6)  # Set to correct pin for interrupt!
+    cs = digitalio.DigitalInOut(board.D5)  # TODO: Set to CS pin
+    int1 = digitalio.DigitalInOut(board.D6)  # TODO: Set to interrupt pin
     lis3dh = adafruit_lis3dh.LIS3DH_SPI(spi, cs, int1=int1)
 
     with uwebsockets.client.connect("ws://" + config.SERVER) as websocket:
