@@ -1,4 +1,5 @@
 import time
+import struct
 
 import adafruit_lis3dh
 import board
@@ -29,7 +30,8 @@ def start():
     with uwebsockets.client.connect("ws://" + config.SERVER) as websocket:
         while True:
             x, y, z = lis3dh.acceleration
-            websocket.send((x, y, z))
+            data = struct.pack("3f", x, y, z)
+            websocket.send(data)
             time.sleep(0.1)
 
 
