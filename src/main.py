@@ -1,13 +1,11 @@
 import time
 import struct
 
-import adafruit_lis3dh
-import board
-import busio
+from lib.lis3dh import LIS3DH_I2C
+from machine import Pin, I2C
 import config
-import digitalio
 import network
-import uwebsockets.client
+import socket
 
 
 def connect(ssid=config.NETWORK_SSID, password=config.NETWORK_PASSWORD):
@@ -22,17 +20,18 @@ def connect(ssid=config.NETWORK_SSID, password=config.NETWORK_PASSWORD):
 
 
 def start():
-    spi = busio.SPI(board.SCK, board.MOSI, board.MISO)
-    cs = digitalio.DigitalInOut(board.D5)  # TODO: Set to CS pin
-    int1 = digitalio.DigitalInOut(board.D6)  # TODO: Set to interrupt pin
-    lis3dh = adafruit_lis3dh.LIS3DH_SPI(spi, cs, int1=int1)
+    i2c = I2C(scl=Pin(5),sda=Pin(4))
+    gyro = LIS3DH_I2C(i2c)
 
-    with uwebsockets.client.connect("ws://" + config.SERVER) as websocket:
-        while True:
-            x, y, z = lis3dh.acceleration
-            data = struct.pack("3f", x, y, z)
-            websocket.send(data)
-            time.sleep(0.1)
+    # address = socket.getaddrinfo(config.SERVER, config.PORT)[0][-1]
+    # sock = socket.socket()
+    # sock.connect(address)
+    while True:
+        x, y, z = gyro.acceleration
+        print(time.localtime(), ":  " ,x,y,z)
+        data = struct.pack("3f", x, y, z)
+        # sock.send(data)
+        time.sleep(0.1)
 
 
 connect()

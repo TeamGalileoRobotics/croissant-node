@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # copy all files in src/
-for file in src/*; do
-    sudo ampy -p /dev/ttyUSB0 put "$file"
+cd src
+for file in ./*; do
+    sudo ampy -p /dev/ttyUSB0 put "$file" "$file"
     echo "copied $file"
 done
+cd ..
