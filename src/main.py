@@ -20,7 +20,7 @@ def connect(ssid=config.NETWORK_SSID, password=config.NETWORK_PASSWORD):
 
 
 def start():
-    i2c = I2C(scl=Pin(5),sda=Pin(4))
+    i2c = I2C(scl=Pin(5), sda=Pin(4))
     gyro = LIS3DH_I2C(i2c)
 
     address = socket.getaddrinfo(config.SERVER, config.PORT)[0][-1]
@@ -28,7 +28,7 @@ def start():
     sock.connect(address)
     while True:
         x, y, z = gyro.acceleration
-        print(time.localtime(), ":  " ,x,y,z)
+        print(time.localtime(), ":  ", x, y, z)
         data = struct.pack("3f", x, y, z)
         sock.send(data)
         time.sleep(0.1)
