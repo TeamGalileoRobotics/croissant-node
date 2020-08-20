@@ -24,7 +24,7 @@ def start():
     gyro = LIS3DH_I2C(i2c)
 
     address = socket.getaddrinfo(config.SERVER, config.PORT)[0][-1]
-    sock = socket.socket()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.connect(address)
     while True:
         x, y, z = gyro.acceleration
