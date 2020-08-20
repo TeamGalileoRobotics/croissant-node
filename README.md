@@ -2,9 +2,9 @@
 
 ## Setup
 
-1. Follow [this guide](https://learn.adafruit.com/welcome-to-circuitpython/circuitpython-for-esp8266) to install CircuitPython.
-2. Use [ampy](https://pypi.org/project/adafruit-ampy/) to copy the dependencies to the board.
-3. Run the `deploy.sh` script
+1. Follow [this guide](http://docs.micropython.org/en/latest/esp8266/quickref.html) to install Micropython.
+2. Install [ampy](https://pypi.org/project/adafruit-ampy/) for easy file transfer.
+3. Run the `deploy.sh` script.
 
 ## MicroPython Dependencies
 
